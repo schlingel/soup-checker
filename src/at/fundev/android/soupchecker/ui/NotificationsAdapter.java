@@ -208,11 +208,11 @@ public class NotificationsAdapter extends ArrayAdapter<Item> {
 		}
 		TextView txtVwDesc = (TextView) convertView
 				.findViewById(at.fundev.android.soupchecker.R.id.lblDescription);
-		txtVwDesc.setText(items[position].getTitle());
+		txtVwDesc.setText(items[position].getTitle().trim());
 
 		TextView txtVwDateTime = (TextView) convertView
 				.findViewById(at.fundev.android.soupchecker.R.id.lblDate);
-		txtVwDateTime.setText(items[position].getPubDate());
+		txtVwDateTime.setText(items[position].getPubDate().trim());
 
 		ImageView imgVw = (ImageView) convertView
 				.findViewById(at.fundev.android.soupchecker.R.id.imgVwUserLogo);
