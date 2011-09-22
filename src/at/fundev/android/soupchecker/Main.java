@@ -121,7 +121,7 @@ public class Main extends Activity implements OnItemClickListener {
 			lvNotifications.setOnItemClickListener(Main.this);
 			lvNotifications.refreshDrawableState();
 			dlgDownloadProgress.cancel();
-			adapter.fetchUserImagesFromSoup();
+			adapter.fetchUserImagesIfPrefsActive();
 		}
 	}
 
@@ -181,7 +181,7 @@ public class Main extends Activity implements OnItemClickListener {
 	private boolean startedCredentialsIfNeeded() {
 		CredsHelper creds = new CredsHelper(getBaseContext());
 
-		if (!creds.isSet()) {
+		if (!creds.isSoupUrlSet()) {
 			dlgNotification.show();
 			return true;
 		}

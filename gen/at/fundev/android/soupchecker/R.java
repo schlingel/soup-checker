@@ -33,6 +33,8 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
+        public static final int credsFetchImagesSummary=0x7f050007;
+        public static final int credsFetchImagesTitle=0x7f050006;
         public static final int credsNotificationDlg=0x7f050003;
         public static final int credsTitle=0x7f050001;
         public static final int credsUrlTitle=0x7f050002;

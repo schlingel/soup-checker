@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import at.fundev.android.soupchecker.models.Item;
+import at.fundev.android.soupchecker.utils.CredsHelper;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -182,11 +183,15 @@ public class NotificationsAdapter extends ArrayAdapter<Item> {
 	}
 
 	/**
-	 * Fetch user images from soup.
+	 * Fetch user images from soup if the preference value is set to true.
 	 */
-	public void fetchUserImagesFromSoup() {
-		ImageFetcherTask task = new ImageFetcherTask();
-		task.execute(items);
+	public void fetchUserImagesIfPrefsActive() {
+		CredsHelper creds = new CredsHelper(getContext());
+		
+		if(creds.isFetchImagesActive()) {
+			ImageFetcherTask task = new ImageFetcherTask();
+			task.execute(items);
+		}
 	}
 	
 	/* (non-Javadoc)
