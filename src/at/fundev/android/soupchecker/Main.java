@@ -108,9 +108,12 @@ public class Main extends Activity implements OnItemClickListener {
 		 */
 		@Override
 		protected void onPostExecute(RssRoot result) {
-			Log.d(NotificationFetcherTask.class.getName(),
-					Integer.toString(result.getChannel().getItems().length)
-							+ " Items!");
+			if(result == null) {
+				dlgNotification.show();
+				return;
+			}
+			
+			Log.d(NotificationFetcherTask.class.getName(), Integer.toString(result.getChannel().getItems().length) + " Items!");
 
 			Item[] items = result.getChannel().getItems();
 
@@ -195,8 +198,11 @@ public class Main extends Activity implements OnItemClickListener {
 	 */
 	private void buildDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Please enter your notification RSS Url");
-		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		String dlgText = getString(R.string.credsUrlSummary);
+		String btnOKText = getString(R.string.dlgOkBtnText);
+		
+		builder.setMessage(dlgText);
+		builder.setPositiveButton(btnOKText, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				startCredentialsActivity();

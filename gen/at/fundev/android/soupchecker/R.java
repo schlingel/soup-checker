@@ -33,13 +33,17 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
-        public static final int credsFetchImagesSummary=0x7f050007;
-        public static final int credsFetchImagesTitle=0x7f050006;
-        public static final int credsNotificationDlg=0x7f050003;
+        public static final int credsFetchImagesSummary=0x7f05000a;
+        public static final int credsFetchImagesTitle=0x7f050009;
+        public static final int credsNotificationDlg=0x7f050006;
         public static final int credsTitle=0x7f050001;
+        public static final int credsUrlSummary=0x7f05000b;
         public static final int credsUrlTitle=0x7f050002;
-        public static final int menu_refresh_title=0x7f050004;
-        public static final int menu_settings_title=0x7f050005;
+        public static final int dlgOkBtnText=0x7f050005;
+        public static final int dlgSummarySetUrlDialog=0x7f050003;
+        public static final int dlgTitleSetUrlDialog=0x7f050004;
+        public static final int menu_refresh_title=0x7f050007;
+        public static final int menu_settings_title=0x7f050008;
     }
     public static final class xml {
         public static final int credentials=0x7f040000;
