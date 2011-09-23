@@ -189,6 +189,7 @@ public class Main extends Activity implements OnItemClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		setHeaderVisibilityFromPreferences();
 		buildDialog();
 
 		lvNotifications = (ListView) this.findViewById(R.id.lvNotifications);
@@ -198,10 +199,14 @@ public class Main extends Activity implements OnItemClickListener {
 		}
 	}
 
+	/**
+	 * Checks the preferences and sets the header visiblity accordingly to the user settings. The
+	 * header is visible or gone.
+	 */
 	private void setHeaderVisibilityFromPreferences() {
 		CredsHelper creds = new CredsHelper(this);
-		RelativeLayout layout = null;
-		
+		RelativeLayout layout = (RelativeLayout)findViewById(R.id.rlHeader);
+		layout.setVisibility(creds.isHeaderDisplayActive() ? View.VISIBLE : View.GONE);
 	}
 	
 	@Override
@@ -265,12 +270,15 @@ public class Main extends Activity implements OnItemClickListener {
 	 * soup and a little text.
 	 */
 	private void setUserHeader(Channel channel) {
-		((TextView)findViewById(R.id.lblUserTxt)).setText(channel.getTitle());
 		CredsHelper creds = new CredsHelper(this);
-		
-		if(creds.isFetchImagesActive()) {
-			UserImageFetcherTask task = new UserImageFetcherTask();
-			task.execute(channel.getImage().getUrl());
+
+		if(creds.isHeaderDisplayActive()) {
+			((TextView)findViewById(R.id.lblUserTxt)).setText(channel.getTitle());
+			
+			if(creds.isFetchImagesActive()) {
+				UserImageFetcherTask task = new UserImageFetcherTask();
+				task.execute(channel.getImage().getUrl());
+			}
 		}
 	}
 	
@@ -316,7 +324,7 @@ public class Main extends Activity implements OnItemClickListener {
 
 		if(requestCode == SETTINGS_REQUEST_ID) {
 			Log.d(Main.class.getName(), "refreshing list in onActivityResult");
-	
+			setHeaderVisibilityFromPreferences();
 			startedCredentialsIfNeeded();
 			refreshListView(new Item[0]);
 		}
