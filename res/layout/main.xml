@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-    <!-- 
-    <LinearLayout
-    	android:orientation="horizontal"
+    android:layout_height="fill_parent">
+    <RelativeLayout
     	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content">
+    	android:layout_height="wrap_content"
+    	android:paddingBottom="1px">
     	<ImageView 
     		android:id="@+id/imgVwUserLogo"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content" />
+    		android:layout_width="41px"
+    		android:layout_height="41px"
+    		android:gravity="left"
+    		android:layout_centerVertical="true"
+    		android:src="@drawable/soup_user" />
     	<TextView 
     		android:id="@+id/lblUserTxt"
     		android:layout_height="wrap_content"
-    		android:layout_width="wrap_content" />
-    </LinearLayout>  -->
+    		android:layout_width="wrap_content"
+    		android:layout_toRightOf="@id/imgVwUserLogo"
+    		android:layout_centerVertical="true"
+    		android:paddingLeft="3px"
+    		android:text="@string/userDefaultText" />
+    </RelativeLayout>
+    <View 
+    	android:layout_width="fill_parent"
+    	android:layout_height="1px"
+    	android:background="#B3B3B3" />
     <ListView 
     	android:id="@+id/lvNotifications"
     	android:layout_width="fill_parent"

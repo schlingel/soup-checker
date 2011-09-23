@@ -3,10 +3,11 @@
     <string name="app_name">Soup Checker</string>
     <string name="credsTitle">Configuration</string>
     <string name="credsUrlTitle">Soup RSS URL</string>
+    <string name="userDefaultText">Users soup</string>
     <string name="dlgSummarySetUrlDialog">Please enter your notification RSS Url in your settings.</string>
     <string name="dlgTitleSetUrlDialog">Could not connect to soup</string>
     <string name="dlgOkBtnText">OK</string>
-    <string name="credsNotificationDlg">To view your notifications you have to enter your personal RSS feed url.</string>
+    <string name="credsNoRtificationDlg">To view your notifications you have to enter your personal RSS feed url.</string>
     <string name="menu_refresh_title">Refresh</string>
     <string name="menu_settings_title">Settings</string>
     <string name="credsFetchImagesTitle">Fetch images from soup?</string>
