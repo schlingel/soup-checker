@@ -21,10 +21,11 @@ public final class R {
         public static final int imgVwUserLogo=0x7f070000;
         public static final int lblDate=0x7f070002;
         public static final int lblDescription=0x7f070001;
-        public static final int lblUserTxt=0x7f070003;
-        public static final int lvNotifications=0x7f070004;
-        public static final int refresh=0x7f070005;
-        public static final int settings=0x7f070006;
+        public static final int lblUserTxt=0x7f070004;
+        public static final int lvNotifications=0x7f070005;
+        public static final int refresh=0x7f070006;
+        public static final int rlHeader=0x7f070003;
+        public static final int settings=0x7f070007;
     }
     public static final class layout {
         public static final int list_item=0x7f030000;
@@ -35,6 +36,8 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
+        public static final int credDisplayUserHeaderSummary=0x7f05000e;
+        public static final int credDisplayUserHeaderTitle=0x7f05000d;
         public static final int credsFetchImagesSummary=0x7f05000b;
         public static final int credsFetchImagesTitle=0x7f05000a;
         public static final int credsNoRtificationDlg=0x7f050007;

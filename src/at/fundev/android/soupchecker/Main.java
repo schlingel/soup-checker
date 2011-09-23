@@ -1,8 +1,10 @@
 package at.fundev.android.soupchecker;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -15,6 +17,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,9 +26,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import at.fundev.android.soupchecker.models.Channel;
 import at.fundev.android.soupchecker.models.Item;
 import at.fundev.android.soupchecker.models.RssRoot;
 import at.fundev.android.soupchecker.ui.NotificationsAdapter;
@@ -123,11 +130,46 @@ public class Main extends Activity implements OnItemClickListener {
 			lvNotifications.setAdapter(adapter);
 			lvNotifications.setOnItemClickListener(Main.this);
 			lvNotifications.refreshDrawableState();
+			setUserHeader(result.getChannel());
 			dlgDownloadProgress.cancel();
 			adapter.fetchUserImagesIfPrefsActive();
 		}
 	}
 
+	/** This task handles the fetching of the user image from the channel image url. */
+	private class UserImageFetcherTask extends AsyncTask<URL, Void, Drawable> {
+
+		@Override
+		protected Drawable doInBackground(URL... soupUrl) {
+			URL url = soupUrl[0];
+			try {
+				return Drawable.createFromStream(url.openStream(), "src");
+			} catch (MalformedURLException e) {
+				Log.e(UserImageFetcherTask.class.getName(), e.getMessage());
+			} catch (IOException e) {
+				Log.e(UserImageFetcherTask.class.getName(), e.getMessage());
+			} catch (NullPointerException e) {				
+				Log.e(UserImageFetcherTask.class.getName(), e.getMessage());
+			}
+			
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Drawable result) {
+			if(result == null) {
+				Log.w(UserImageFetcherTask.class.getName(), "Couldn't set user image - keeps default");
+				return;
+			}
+			
+			ImageView imgUser = (ImageView)findViewById(at.fundev.android.soupchecker.R.id.imgVwUserLogo);
+			imgUser.setImageDrawable(result);
+			
+			Log.d(UserImageFetcherTask.class.getName(), "Set user image");
+		}
+		
+	}
+	
 	/** The lv notifications. */
 	private ListView lvNotifications;
 
@@ -156,6 +198,12 @@ public class Main extends Activity implements OnItemClickListener {
 		}
 	}
 
+	private void setHeaderVisibilityFromPreferences() {
+		CredsHelper creds = new CredsHelper(this);
+		RelativeLayout layout = null;
+		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -176,7 +224,7 @@ public class Main extends Activity implements OnItemClickListener {
 				return super.onOptionsItemSelected(item);
 		}
 	}
-
+	
 	/**
 	 * Checks if the user allready set the URL of his RSS feed. If not the app
 	 * displays the credentials activity.
@@ -212,6 +260,20 @@ public class Main extends Activity implements OnItemClickListener {
 		dlgNotification = builder.create();
 	}
 
+	/**
+	 * Sets the user header. The header is the part in the view which displays the owen user pic from
+	 * soup and a little text.
+	 */
+	private void setUserHeader(Channel channel) {
+		((TextView)findViewById(R.id.lblUserTxt)).setText(channel.getTitle());
+		CredsHelper creds = new CredsHelper(this);
+		
+		if(creds.isFetchImagesActive()) {
+			UserImageFetcherTask task = new UserImageFetcherTask();
+			task.execute(channel.getImage().getUrl());
+		}
+	}
+	
 	/**
 	 * Starts the credentials activity.
 	 */

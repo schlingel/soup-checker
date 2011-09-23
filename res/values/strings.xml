@@ -3,7 +3,7 @@
     <string name="app_name">Soup Checker</string>
     <string name="credsTitle">Configuration</string>
     <string name="credsUrlTitle">Soup RSS URL</string>
-    <string name="userDefaultText">Users soup</string>
+    <string name="userDefaultText"></string>
     <string name="dlgSummarySetUrlDialog">Please enter your notification RSS Url in your settings.</string>
     <string name="dlgTitleSetUrlDialog">Could not connect to soup</string>
     <string name="dlgOkBtnText">OK</string>
@@ -13,4 +13,6 @@
     <string name="credsFetchImagesTitle">Fetch images from soup?</string>
     <string name="credsFetchImagesSummary">Displays user images from soup.io. Disable if you have to look for a download limit.</string>
     <string name="credsUrlSummary">Enter your personal notification RSS URL. You find it in the notification popup in your soup.</string>
+    <string name="credDisplayUserHeaderTitle">Display your soup information?</string>
+    <string name="credDisplayUserHeaderSummary">If set to false only notifications are displayed. If set to true you see also your owen soup icon and a header text.</string>
 </resources>

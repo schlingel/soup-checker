@@ -4,16 +4,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <RelativeLayout
+    	android:id="@+id/rlHeader"
     	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:paddingBottom="1px">
+    	android:layout_height="wrap_content">
     	<ImageView 
     		android:id="@+id/imgVwUserLogo"
     		android:layout_width="41px"
     		android:layout_height="41px"
     		android:gravity="left"
     		android:layout_centerVertical="true"
-    		android:src="@drawable/soup_user" />
+    		android:src="@drawable/soup_user"
+    		android:paddingBottom="1px" />
     	<TextView 
     		android:id="@+id/lblUserTxt"
     		android:layout_height="wrap_content"
@@ -21,12 +22,15 @@
     		android:layout_toRightOf="@id/imgVwUserLogo"
     		android:layout_centerVertical="true"
     		android:paddingLeft="3px"
+    		android:textStyle="bold"
     		android:text="@string/userDefaultText" />
+	    <View 
+	    	android:layout_below="@id/imgVwUserLogo"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="1px"
+	    	android:background="#B3B3B3"
+	    	android:paddingTop="3px" />
     </RelativeLayout>
-    <View 
-    	android:layout_width="fill_parent"
-    	android:layout_height="1px"
-    	android:background="#B3B3B3" />
     <ListView 
     	android:id="@+id/lvNotifications"
     	android:layout_width="fill_parent"

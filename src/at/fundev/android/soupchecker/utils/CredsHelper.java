@@ -16,11 +16,17 @@ public final class CredsHelper {
 	
 	private static final String CREDS_FETCH_IMAGES = "credFetchImages";
 	
+	private static final String CREDS_DISPLAY_HEADER = "credDisplayUserHeader";
+	
 	private static final boolean DEF_FETCH_IMAGES_VALUE = true;
+	
+	private static final boolean DEF_CREDS_DISPLAY_HEADER_VALUE = true;
 	
 	private static String soupUrl = "";
 	
 	private static Boolean fetchImages = null;
+	
+	private static Boolean displayHeader = null;
 	
 	/**
 	 * The activity context. Needed for fetching the preferences.
@@ -48,6 +54,7 @@ public final class CredsHelper {
 	private void fetchPreferences() {
 			soupUrl = prefs.getString(CREDS_URL_NAME, SOUP_DEF_URL);
 			fetchImages = prefs.getBoolean(CREDS_FETCH_IMAGES, DEF_FETCH_IMAGES_VALUE);
+			displayHeader = prefs.getBoolean(CREDS_DISPLAY_HEADER, DEF_CREDS_DISPLAY_HEADER_VALUE);
 	}
 	
 	/**
@@ -96,5 +103,19 @@ public final class CredsHelper {
 	 */
 	public boolean isFetchImagesActive() {
 		return fetchImages;
+	}
+	
+	/** Checks wether the header should be displayed or not. */
+	public boolean isHeaderDisplayActive() {
+		return displayHeader;
+	}
+	
+	/** Sets the value wether the header should be displayed or not. */
+	public void setHeaderDisplayActive(boolean value) {
+		displayHeader = value;
+		
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putBoolean(CREDS_DISPLAY_HEADER, value);
+		editor.commit();
 	}
 }
