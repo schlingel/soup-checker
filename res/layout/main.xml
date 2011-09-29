@@ -7,29 +7,47 @@
     	android:id="@+id/rlHeader"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content">
+    	<Button
+    		android:id="@+id/btnRefresh"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="a" 
+    		android:gravity="left"
+    		android:layout_alignParentLeft="true"
+    		android:layout_centerVertical="true" />
     	<ImageView 
     		android:id="@+id/imgVwUserLogo"
     		android:layout_width="41px"
     		android:layout_height="41px"
-    		android:gravity="left"
+    		android:gravity="center"
+    		android:layout_centerHorizontal="true"
     		android:layout_centerVertical="true"
+    		android:layout_marginBottom="10px"
     		android:src="@drawable/soup_user"
     		android:paddingBottom="1px" />
     	<TextView 
     		android:id="@+id/lblUserTxt"
     		android:layout_height="wrap_content"
     		android:layout_width="wrap_content"
-    		android:layout_toRightOf="@id/imgVwUserLogo"
-    		android:layout_centerVertical="true"
-    		android:paddingLeft="3px"
+    		android:layout_below="@id/imgVwUserLogo"
+    		android:layout_centerHorizontal="true"
     		android:textStyle="bold"
     		android:text="@string/userDefaultText" />
+    	<Button 
+    		android:id="@+id/btnSettings"
+    		android:layout_height="wrap_content"
+    		android:layout_width="wrap_content"
+    		android:gravity="right"
+    		android:layout_alignParentRight="true"
+    		android:layout_centerVertical="true"
+    		android:text="s" />
 	    <View 
-	    	android:layout_below="@id/imgVwUserLogo"
+	    	android:id="@+id/hrLine"
 	    	android:layout_width="fill_parent"
 	    	android:layout_height="1px"
 	    	android:background="#B3B3B3"
-	    	android:paddingTop="3px" />
+	    	android:paddingTop="3px"
+	    	android:layout_below="@id/lblUserTxt" />
     </RelativeLayout>
     <ListView 
     	android:id="@+id/lvNotifications"
